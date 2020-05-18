@@ -1,49 +1,47 @@
 import React from 'react';
-class Developer {
-    constructor(firstName, lastName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
 
-    getName() {
-        return this.firstName + ' ' + this.lastName;
-    }
-}
+const list = [
+    {
+        title: 'React',
+        url: 'https://reactjs.org/',
+        author: 'Jordan Walke',
+        num_comments: 3,
+        points: 4,
+        objectID: 0,
+    },
+    {
+        title: 'Redux',
+        url: 'https://redux.js.org/',
+        author: 'Dan Abramov, Andrew Clark',
+        num_comments: 2,
+        points: 5,
+        objectID: 1,
+    },
+];
 
+const App = () => (
+    <div>
+        <h1>My Hacker Stories</h1>
 
-function App() {
-    return (
-        <div>
-            <h1>My Hacker Stories</h1>
+        <label htmlFor="search">Search: </label>
+        <input id="search" type="text" />
 
-            <label htmlFor="search">Search: </label>
-            <input id="search" type="text" />
+        <hr />
 
-            <hr />
+        <List />
+    </div>
+);
 
-            {/* creating an instance of List component */}
-            <List />
-            {/* creating another instance of List component */}
-            <List />
+const List = () =>
+    list.map(item => (
+        <div key={item.objectID}>
+      <span>
+        <a href={item.url}>{item.title}</a>
+      </span>
+            <span>{item.author}</span>
+            <span>{item.num_comments}</span>
+            <span>{item.points}</span>
         </div>
-    );
-}
-
-// definition of List component
-function List() {
-    // class instantiation
-    const robin = new Developer('Robin', 'Wieruch');
-
-    // another class instantiation
-    const dennis = new Developer('Dennis', 'Wieruch');
-
-    return (
-        <div>
-            {robin.getName()};
-            {dennis.getName()};
-
-        </div>
-    );
-}
+    ));
 
 export default App;
